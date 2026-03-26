@@ -14,6 +14,7 @@ export default function WorkerManager() {
   const [workerFormData, setWorkerFormData] = useState({ loginId: '', password: '', role: 'worker' as 'worker'|'manager', name: '', department: '', skillLevel: 5 });
   
   const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [selectedProjectId, setSelectedProjectId] = useState('all');
   const [performanceWorker, setPerformanceWorker] = useState<Worker | null>(null);
 
   const departments = Array.from(new Set(allWorkers.filter(w => w.role === 'worker' && w.department).map(w => w.department)));
@@ -62,13 +63,17 @@ export default function WorkerManager() {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-bold flex items-center gap-2"><Users className="text-orange-500 w-6 h-6"/> 계정 및 인력 관리</h2>
         <div className="flex gap-2">
+          <select value={selectedProjectId} onChange={e => setSelectedProjectId(e.target.value)} className="bg-[#1A1D23] border border-white/10 rounded-xl px-4 py-2 text-sm text-white outline-none">
+            <option value="all">전체 프로젝트 (통합)</option>
+            {projects.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+          </select>
           <select value={selectedDepartment} onChange={e => setSelectedDepartment(e.target.value)} className="bg-[#1A1D23] border border-white/10 rounded-xl px-4 py-2 text-sm text-white outline-none">
             <option value="all">전체 부서</option>
             {departments.map(d => <option key={d} value={d}>{d}</option>)}
           </select>
           <div className="bg-[#1A1D23] border border-white/10 rounded-xl px-4 py-2 flex items-center gap-2">
             <Search className="w-4 h-4 text-gray-400" />
-            <input type="text" placeholder="이름/직급 검색" className="bg-transparent border-none text-sm text-white outline-none w-32" />
+            <input type="text" placeholder="이름 검색" className="bg-transparent border-none text-sm text-white outline-none w-32" />
           </div>
           <button onClick={() => { setEditingWorker(null); setWorkerFormData({ loginId: '', password: '', role: 'worker', name: '', department: '', skillLevel: 5 }); setShowWorkerModal(true); }} className="bg-orange-500 hover:bg-orange-400 text-black font-bold px-4 py-2 rounded-xl flex items-center gap-2 transition-colors">
             <Plus className="w-4 h-4" /> 신규 계정
@@ -78,7 +83,7 @@ export default function WorkerManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {allWorkers.filter(w => 
-          (w.projectId === activeProjectId || w.role === 'master') && 
+          (selectedProjectId === 'all' || w.projectId === selectedProjectId) && 
           (selectedDepartment === 'all' || w.department === selectedDepartment)
         ).map(w => {
            const pName = processes.find(p => p.id === w.currentProcessId)?.name || '알 수 없음';
