@@ -1,0 +1,8 @@
+{
+  "name": "SmartFactory Go",
+  "description": "A mobile-first process management solution for factory managers featuring AI voice/photo logs, traffic-light dashboards, and real-time bottleneck detection.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
