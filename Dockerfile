@@ -3,6 +3,14 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
+# Add ARGs for build-time environment variables
+ARG VITE_SUPABASE_URL=https://ffqoqmwrwvuoqkzokczf.supabase.co
+ARG VITE_SUPABASE_ANON_KEY=sb_publishable_Tz3p6diJ5AIM6taPm7HVAg_Amf0gWhu
+
+# Set them as environment variables so Vite can see them
+ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
+ENV VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
+
 COPY package*.json ./
 RUN npm install
 
