@@ -30,7 +30,7 @@ export default function Login() {
             <Zap className="w-10 h-10 text-black fill-current" />
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-center text-white mb-2">SmartFactory <span className="text-orange-500">Go</span></h2>
+        <h2 className="text-2xl font-bold text-center text-white mb-2">JKP MES <span className="text-orange-500">GO</span></h2>
         <p className="text-gray-400 text-center text-sm mb-8">안전하고 효율적인 권한 기반 현장 관리</p>
 
         <form onSubmit={handleLogin} className="space-y-4 relative z-10">

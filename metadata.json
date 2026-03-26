@@ -1,5 +1,5 @@
 {
-  "name": "SmartFactory Go",
+  "name": "JKP MES GO",
   "description": "A mobile-first process management solution for factory managers featuring AI voice/photo logs, traffic-light dashboards, and real-time bottleneck detection.",
   "requestFramePermissions": [
     "camera",

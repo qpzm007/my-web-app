@@ -25,7 +25,7 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('dashboard')}>
             <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center"><Zap className="w-5 h-5 text-black fill-current" /></div>
-            <h1 className="text-lg font-bold tracking-tight hidden sm:block">SmartFactory <span className="text-orange-500">Go</span> Admin</h1>
+            <h1 className="text-lg font-bold tracking-tight hidden sm:block">JKP MES <span className="text-orange-500">GO</span> Admin</h1>
           </div>
           <select className="bg-[#1A1D23] border border-white/10 rounded-xl px-3 py-1.5 text-sm font-bold text-orange-500 outline-none hover:border-orange-500/50 transition-colors"
             value={activeProjectId} onChange={(e) => { setActiveProjectId(e.target.value); setActiveTab('dashboard'); }}>
